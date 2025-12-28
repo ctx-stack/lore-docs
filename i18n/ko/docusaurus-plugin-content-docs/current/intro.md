@@ -26,14 +26,14 @@ Lore MCP는 AI 지원 코딩의 **사고 과정**을 캡처하고 보존합니�
 ## 빠른 시작
 
 ```bash
-# 1. https://lore-dashboard.pages.dev 에서 API 키 발급
+# 1. https://lore-dashboard.jadecon2655.workers.dev 에서 API 키 발급
 
-# 2. MCP 설정 (~/.claude/settings.json에 추가)
+# 2. MCP 설정 (~/.claude.json에 추가)
 {
   "mcpServers": {
     "lore": {
       "command": "uvx",
-      "args": ["--from", "lore-mcp", "lore-mcp"],
+      "args": ["lore-mcp"],
       "env": { "LORE_API_KEY": "lore_your_key_here" }
     }
   }
@@ -69,4 +69,4 @@ Lore MCP는 AI 지원 코딩의 **사고 과정**을 캡처하고 보존합니�
 
 - [GitHub](https://github.com/ctx-stack/lore-mcp)
 - [PyPI](https://pypi.org/project/lore-mcp/)
-- [대시보드](https://lore-dashboard.pages.dev)
+- [대시보드](https://lore-dashboard.jadecon2655.workers.dev)

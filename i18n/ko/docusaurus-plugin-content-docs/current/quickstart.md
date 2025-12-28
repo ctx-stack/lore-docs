@@ -39,7 +39,7 @@ pip install lore-mcp
   "mcpServers": {
     "lore": {
       "command": "uvx",
-      "args": ["--from", "lore-mcp", "lore-mcp"],
+      "args": ["lore-mcp"],
       "env": {
         "LORE_API_KEY": "your-api-key"
       }

@@ -69,7 +69,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://lore-dashboard.pages.dev',
+          href: 'https://lore-dashboard.jadecon2655.workers.dev',
           label: 'Dashboard',
           position: 'right',
         },
@@ -101,7 +101,7 @@ const config: Config = {
           items: [
             {
               label: 'Dashboard',
-              href: 'https://lore-dashboard.pages.dev',
+              href: 'https://lore-dashboard.jadecon2655.workers.dev',
             },
             {
               label: 'PyPI',
