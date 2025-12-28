@@ -107,10 +107,6 @@ const config: Config = {
               label: 'PyPI',
               href: 'https://pypi.org/project/lore-mcp/',
             },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/ctx-stack/lore-mcp',
-            },
           ],
         },
       ],
