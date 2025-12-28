@@ -1,3 +1,8 @@
+---
+sidebar_position: 2
+title: Quick Start
+---
+
 # Quick Start Guide
 
 Get started with Lore MCP in under 5 minutes.
@@ -64,4 +69,4 @@ Claude should respond with your project info.
 
 ## Next Steps
 
-- [MCP Usage Guide](mcp-usage-guide.md) - Full tool reference
+- [MCP Usage Guide](./mcp-usage-guide) - Full tool reference

@@ -1,3 +1,8 @@
+---
+sidebar_position: 2
+title: 빠른 시작
+---
+
 # 빠른 시작 가이드
 
 5분 안에 Lore MCP 시작하기.
@@ -64,4 +69,4 @@ Claude가 프로젝트 정보로 응답해야 합니다.
 
 ## 다음 단계
 
-- [MCP 사용 가이드](mcp-usage-guide.md) - 전체 도구 참조
+- [MCP 사용 가이드](./mcp-usage-guide) - 전체 도구 참조

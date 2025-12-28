@@ -1,4 +1,9 @@
-# Lore MCP 사용 가이드
+---
+sidebar_position: 3
+title: MCP 사용 가이드
+---
+
+# MCP 사용 가이드
 
 Claude Code와 함께 Lore MCP 서버를 사용하는 완벽 가이드.
 
@@ -10,11 +15,13 @@ Lore MCP는 **클라우드 기반 API 시스템**으로, Claude가 코딩 컨텍
 - **교차 기기 동기화** - 어디서든 컨텍스트 기록에 접근
 - **영구 저장** - 로컬 세션을 넘어 컨텍스트 유지
 
-> **중요**: Lore MCP는 API 키가 필요합니다. `lore_init`을 제외한 모든 작업은 클라우드 API를 호출합니다.
+:::info
+Lore MCP는 API 키가 필요합니다. `lore_init`을 제외한 모든 작업은 클라우드 API를 호출합니다.
+:::
 
 ## 아키텍처
 
-```text
+```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   Claude Code   │────▶│   Lore MCP       │────▶│   Lore API      │
 │   (클라이언트)   │     │   (서버)          │     │   (클라우드)     │
@@ -24,58 +31,6 @@ Lore MCP는 **클라우드 기반 API 시스템**으로, Claude가 코딩 컨텍
                         LORE_API_KEY
                         (필수)
 ```
-
-## 설정
-
-### 1단계: API 키 발급
-
-1. [lore-dashboard.pages.dev](https://lore-dashboard.pages.dev) 방문
-2. 이메일로 회원가입 또는 로그인
-3. **API Keys** 페이지로 이동
-4. 새 API 키 생성
-5. 키 복사 (`lore_`로 시작)
-
-### 2단계: MCP 서버 설정
-
-Claude Code 설정 파일에 추가 (`~/.claude/settings.json`):
-
-```json
-{
-  "mcpServers": {
-    "lore": {
-      "command": "uvx",
-      "args": ["--from", "lore-mcp", "lore-mcp"],
-      "env": {
-        "LORE_API_KEY": "lore_your_api_key_here"
-      }
-    }
-  }
-}
-```
-
-### 3단계: (선택) 자동 캡처 훅 설정
-
-프로젝트 디렉토리에서 실행:
-
-```bash
-uvx --from lore-mcp lore init --hooks
-```
-
-자동 컨텍스트 캡처를 위한 Claude Code 훅을 설정합니다.
-
-### 4단계: Claude Code 재시작
-
-MCP 서버를 로드하기 위해 재시작합니다.
-
-### 5단계: 확인
-
-Claude에게 물어보기:
-
-```text
-"lore 상태 확인해줘"
-```
-
-플랜 유형과 사용량 통계를 확인할 수 있습니다.
 
 ## 사용 가능한 도구
 
@@ -109,17 +64,6 @@ Claude: [lore_commit 사용]
 }
 ```
 
-**반환값:**
-
-```json
-{
-  "success": true,
-  "synced": 1,
-  "project": "my-project",
-  "usage": { "commits_this_month": 15, "limit": 100 }
-}
-```
-
 ---
 
 ### `lore_blame`
@@ -140,24 +84,6 @@ Claude: [lore_commit 사용]
 Claude: [lore_blame 사용, file_path="src/auth/jwt.py"]
 ```
 
-**반환값:**
-
-```json
-{
-  "found": true,
-  "file_path": "src/auth/jwt.py",
-  "results": [
-    {
-      "context_id": "lore-abc123",
-      "intent": "API용 JWT 인증 구현",
-      "decision": "RS256 알고리즘으로 PyJWT 사용",
-      "author": "teammate@company.com",
-      "created_at": "2024-01-15T10:30:00Z"
-    }
-  ]
-}
-```
-
 ---
 
 ### `lore_search`
@@ -171,32 +97,6 @@ Claude: [lore_blame 사용, file_path="src/auth/jwt.py"]
 | `query` | string | 예 | 검색 쿼리 |
 | `limit` | int | 아니오 | 최대 결과 수 (기본값: 10) |
 
-**예시:**
-
-```text
-사용자: "캐싱 관련 컨텍스트 찾아줘"
-Claude: [lore_search 사용, query="캐싱"]
-```
-
-**반환값:**
-
-```json
-{
-  "found": true,
-  "query": "캐싱",
-  "count": 3,
-  "results": [
-    {
-      "context_id": "lore-def456",
-      "intent": "Redis 캐싱 레이어 추가",
-      "files_changed": ["src/cache/redis.py"],
-      "author": "you@company.com",
-      "created_at": "2024-01-10T14:20:00Z"
-    }
-  ]
-}
-```
-
 ---
 
 ### `lore_init`
@@ -209,24 +109,6 @@ Claude: [lore_search 사용, query="캐싱"]
 | -------- | ---- | ---- | ---- |
 | `force` | bool | 아니오 | 이미 설정되어 있어도 재설정 |
 
-**예시:**
-
-```text
-사용자: "lore 훅 설정해줘"
-Claude: [lore_init 사용]
-```
-
-**반환값:**
-
-```json
-{
-  "success": true,
-  "message": "Hooks configured successfully",
-  "path": "/Users/you/.claude/settings.json",
-  "api_key_configured": true
-}
-```
-
 ---
 
 ### `lore_status`
@@ -234,26 +116,6 @@ Claude: [lore_init 사용]
 Lore 상태 및 사용량 정보를 가져옵니다.
 
 **매개변수:** 없음
-
-**예시:**
-
-```text
-사용자: "lore 상태 확인해줘"
-Claude: [lore_status 사용]
-```
-
-**반환값:**
-
-```json
-{
-  "connected": true,
-  "plan": "free",
-  "usage": [
-    { "feature": "commits", "used": 15, "limit": 100 }
-  ],
-  "user_id": "user-uuid"
-}
-```
 
 ## 팀 컨텍스트 공유
 
@@ -270,59 +132,6 @@ Lore는 **같은 git 저장소**에서 작업하는 팀원과 자동으로 컨�
 - 모든 팀원이 대시보드에서 같은 **팀**에 속해야 함
 - 프로젝트가 같은 **git remote URL**을 가져야 함 (예: `git@github.com:company/repo.git`)
 - 각 팀원이 자신의 API 키가 필요
-
-### 예시
-
-```text
-# 개발자 A가 컨텍스트 커밋
-사용자: "이 데이터베이스 마이그레이션 작업 기록해줘"
-Claude: [lore_commit 사용] → 프로젝트 리모트와 함께 저장
-
-# 개발자 B (같은 팀, 같은 레포)가 검색
-사용자: "데이터베이스 관련 컨텍스트 찾아줘"
-Claude: [lore_search 사용]
-→ 개발자 A의 컨텍스트를 작성자 이메일과 함께 반환
-```
-
-## 사용 워크플로우
-
-### 컨텍스트 기록
-
-```text
-┌─────────────────────────────────────────┐
-│  1. Claude와 작업                        │
-│     "사용자 인증 구현해줘"                │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  2. 컨텍스트 기록                        │
-│     "이 인증 구현 기록해줘"              │
-│     Claude: [lore_commit 사용]          │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  3. 클라우드에 동기화                    │
-│     - 모든 기기에서 접근 가능             │
-│     - 팀원과 공유                        │
-└─────────────────────────────────────────┘
-```
-
-### 컨텍스트 조회
-
-```text
-┌─────────────────────────────────────────┐
-│  나중에: "인증이 왜 이렇게 되었지?"       │
-│                                         │
-│  Claude: [lore_blame 사용]              │
-│                                         │
-│  "컨텍스트에 따르면:                     │
-│   - 의도: JWT 인증 구현                  │
-│   - 결정: RS256 알고리즘                 │
-│   - 작성자: teammate@company.com"       │
-└─────────────────────────────────────────┘
-```
 
 ## 모범 사례
 
@@ -373,12 +182,6 @@ MCP 서버 설정에 `LORE_API_KEY`를 설정하세요.
 
 플랜의 월간 한도에 도달했습니다. 업그레이드하거나 리셋을 기다리세요.
 
-### "No context found"
-
-- `lore_commit`으로 컨텍스트가 생성되었는지 확인
-- 파일 경로가 커밋의 `files_changed`와 일치하는지 확인
-- 팀 컨텍스트의 경우 팀 멤버십 확인
-
 ## 자동 컨텍스트 캡처
 
 훅이 활성화되면 (`lore init --hooks`):
@@ -394,6 +197,6 @@ MCP 서버 설정에 `LORE_API_KEY`를 설정하세요.
 | ---- | --------- | ------- | ---- |
 | Free | 100 | 1명 | $0 |
 | Pro | 1,000 | 5명 | $9/월 |
-| Team | 무제한 | 무제한 | $29/월 |
+| Team | 무제한 | 무제한 | $20/월 |
 
 [대시보드](https://lore-dashboard.pages.dev)에서 플랜을 관리하세요.
