@@ -25,14 +25,14 @@ pip install lore-mcp
 
 ## 2단계: API 키 발급
 
-1. [lore-dashboard.pages.dev](https://lore-dashboard.pages.dev) 방문
+1. [lore-dashboard.jadecon2655.workers.dev](https://lore-dashboard.jadecon2655.workers.dev) 방문
 2. 회원가입 / 로그인
 3. API Keys 페이지 이동
 4. 새 키 생성 (`lore_`로 시작)
 
-## 3단계: MCP 서버 설정
+## 3단계: MCP 서버 설정 (글로벌 - 한 번만)
 
-`~/.claude/settings.json`에 추가:
+`~/.claude.json` (글로벌 설정)에 추가:
 
 ```json
 {
@@ -48,14 +48,22 @@ pip install lore-mcp
 }
 ```
 
-## 4단계: (선택) 자동 캡처 훅 설정
+:::tip
+이것은 **글로벌 설정**으로 한 번만 하면 됩니다. MCP 서버는 모든 프로젝트에서 사용할 수 있습니다.
+:::
+
+## 4단계: 자동 캡처 훅 설정 (프로젝트별)
 
 ```bash
 cd your-project
 uvx --from lore-mcp lore init --hooks
 ```
 
-자동 컨텍스트 캡처를 위한 Claude Code 훅을 설정합니다.
+`.claude/settings.local.json`에 자동 컨텍스트 캡처를 위한 Claude Code 훅을 설정합니다.
+
+:::info
+훅은 **프로젝트별**로 `.claude/settings.local.json`에 설정됩니다. 자동 컨텍스트 캡처를 원하는 각 프로젝트에서 이 명령을 실행하세요.
+:::
 
 ## 5단계: 확인
 

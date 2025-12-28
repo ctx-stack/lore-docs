@@ -103,6 +103,13 @@ Claude: [lore_blame 사용, file_path="src/auth/jwt.py"]
 
 자동 컨텍스트 캡처를 위한 Claude Code 훅을 설정합니다.
 
+:::info 설정 위치
+
+- **MCP 서버**: `~/.claude.json` (글로벌, 한 번만 설정)
+- **훅**: `.claude/settings.local.json` (프로젝트별, init할 때마다)
+
+:::
+
 **매개변수:**
 
 | 매개변수 | 타입 | 필수 | 설명 |
@@ -176,7 +183,7 @@ MCP 서버 설정에 `LORE_API_KEY`를 설정하세요.
 
 ### "Invalid API key"
 
-[대시보드](https://lore-dashboard.pages.dev/api-keys)에서 API 키를 확인하세요.
+[대시보드](https://lore-dashboard.jadecon2655.workers.dev/api-keys)에서 API 키를 확인하세요.
 
 ### "Usage limit exceeded"
 
@@ -199,4 +206,4 @@ MCP 서버 설정에 `LORE_API_KEY`를 설정하세요.
 | Pro | 1,000 | 5명 | $9/월 |
 | Team | 무제한 | 무제한 | $20/월 |
 
-[대시보드](https://lore-dashboard.pages.dev)에서 플랜을 관리하세요.
+[대시보드](https://lore-dashboard.jadecon2655.workers.dev)에서 플랜을 관리하세요.

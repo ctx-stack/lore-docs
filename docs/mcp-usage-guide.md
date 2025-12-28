@@ -103,6 +103,13 @@ Search context commits by keywords. For team users, includes results from team m
 
 Initialize Lore by setting up Claude Code hooks for automatic context capture.
 
+:::info Configuration Locations
+
+- **MCP Server**: `~/.claude.json` (global, one-time setup)
+- **Hooks**: `.claude/settings.local.json` (per-project, each init)
+
+:::
+
 **Parameters:**
 
 | Parameter | Type | Required | Description |
@@ -176,7 +183,7 @@ Set `LORE_API_KEY` in your MCP server config.
 
 ### "Invalid API key"
 
-Check your API key at [dashboard](https://lore-dashboard.pages.dev/api-keys).
+Check your API key at [dashboard](https://lore-dashboard.jadecon2655.workers.dev/api-keys).
 
 ### "Usage limit exceeded"
 
@@ -199,4 +206,4 @@ No manual `lore_commit` needed!
 | Pro | 1,000 | 5 | $9/mo |
 | Team | Unlimited | Unlimited | $20/mo |
 
-Visit [dashboard](https://lore-dashboard.pages.dev) to manage your plan.
+Visit [dashboard](https://lore-dashboard.jadecon2655.workers.dev) to manage your plan.

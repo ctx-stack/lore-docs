@@ -25,14 +25,14 @@ pip install lore-mcp
 
 ## Step 2: Get API Key
 
-1. Visit [lore-dashboard.pages.dev](https://lore-dashboard.pages.dev)
+1. Visit [lore-dashboard.jadecon2655.workers.dev](https://lore-dashboard.jadecon2655.workers.dev)
 2. Sign up / Login
 3. Go to API Keys page
 4. Generate a new key (starts with `lore_`)
 
-## Step 3: Configure MCP Server
+## Step 3: Configure MCP Server (Global - One Time)
 
-Add to `~/.claude/settings.json`:
+Add to `~/.claude.json` (global configuration):
 
 ```json
 {
@@ -48,14 +48,22 @@ Add to `~/.claude/settings.json`:
 }
 ```
 
-## Step 4: (Optional) Setup Auto-Capture Hooks
+:::tip
+This is a **global configuration** that only needs to be done once. The MCP server will be available across all your projects.
+:::
+
+## Step 4: Setup Auto-Capture Hooks (Per Project)
 
 ```bash
 cd your-project
 uvx --from lore-mcp lore init --hooks
 ```
 
-This configures Claude Code hooks for automatic context capture.
+This configures Claude Code hooks in `.claude/settings.local.json` for automatic context capture.
+
+:::info
+Hooks are configured **per project** in `.claude/settings.local.json`. Run this command in each project where you want automatic context capture.
+:::
 
 ## Step 5: Verify
 
