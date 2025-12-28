@@ -73,11 +73,6 @@ const config: Config = {
           label: 'Dashboard',
           position: 'right',
         },
-        {
-          href: 'https://github.com/ctx-stack/lore-mcp',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
